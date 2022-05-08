@@ -1,7 +1,5 @@
-
-
 <?php
-    session_start();
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -31,7 +28,8 @@
             margin-bottom: 3%;
             padding: 5%;
         }
-        #table-div{
+
+        #table-div {
             background-color: white;
         }
 
@@ -58,6 +56,7 @@
             margin-right: 5%;
             color: white;
         }
+
         /* .nav-link
 {
 text-align:center;
@@ -73,10 +72,9 @@ text-align:center;
         <a class="navbar-brand" href="#">
             <img src="Images/logo.png" alt="logo" id="logo">
         </a>
-        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#coll"
-                style="border-color: white;">
-                <span class="navbar-toggler-icon navbar-light" style="background-color: white;"></span>
-            </button>
+        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#coll" style="border-color: white;">
+            <span class="navbar-toggler-icon navbar-light" style="background-color: white;"></span>
+        </button>
 
         <!-- Links -->
         <div class=" navbar-collapse collapse" id="coll">
@@ -87,39 +85,46 @@ text-align:center;
                 <li class="nav-item">
                     <a class="nav-link" href="view-products-page.php" style="color: white; font-weight: bold; font-size: 17px;">Products</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white; font-weight: bold; font-size: 17px;">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white; font-weight: bold; font-size: 17px;">Contact</a>
+                </li>
             </ul>
         </div>
     </nav>
+
 
     <div class="container">
 
         <form action="" method="post">
             <div class="form-group">
-                <label for="prod">Product Name: </label>
+                <label for="prod"><b>Product Name:</b> </label>
                 <input type="text" class="form-control" id="prod" name="pname" Required>
             </div>
             <div class="form-group">
-                <label for="pri">Price: </label>
+                <label for="pri"><b> Price:</b> </label>
                 <input type="text" class="form-control" id="pri" name="price" Required>
             </div>
             <div class="form-group">
-                <label for="desc">Description: </label>
+                <label for="desc"><b> Description:</b> </label>
                 <textarea name="description" id="desc" cols="30" rows="10" class="form-control" Required></textarea>
             </div>
             <div class="form-group">
-                <label for="pic">Product Picture: </label>
+                <label for="pic"><b> Product Picture: </b></label>
                 <input type="file" class="form-control-file" id="pic" name="picture" accept="image/*" required>
                 <small>jpg,jpeg,png...</small>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary" name="add" id="add" >Add Item</button>
-            <button class="btn btn-primary" id="btn" style="display: inline-block;"><a href="view-products-page.php"style="color: white; text-decoration:none;">Show Items</a></button>
+            <button type="submit" class="btn btn-primary" name="add" id="add">Add Item</button>
+            <button class="btn btn-primary" id="btn" style="display: inline-block;"><a href="view-products-page.php" style="color: white; text-decoration:none;">Show Items</a></button>
         </form>
         <br>
-        
+
 
     </div>
-    
+
     <div class="table-responsive" id="table-div">
         <table class="table">
             <thead>
@@ -131,17 +136,18 @@ text-align:center;
                 </tr>
             </thead>
             <tbody id="info">
-            <?php 
-                
-                if(isset($_POST['add'])){
-                    $_SESSION['n'].=$_POST['pname'].'<br>';
-                    $_SESSION['p'].=$_POST['price'].'<br>';
-                    $_SESSION['d'].=$_POST['description'].'<br>';
-                    $_SESSION['ph'].=$_POST['picture'].'<br>';
-                    echo ('<tr><td>' . $_SESSION['n'] . '</td><td>' . $_SESSION['p'] . '</td><td>' . $_SESSION['d'] . '</td><td>' . $_SESSION['ph']. '</td></tr>');
+                <?php
+
+
+                if (isset($_POST['add'])) {
+                    $_SESSION['name'] .= $_POST['pname'] . '<br>';
+                    $_SESSION['pricee'] .= $_POST['price'] . '<br>';
+                    $_SESSION['descriptions'] .= $_POST['description'] . '<br>';
+                    $_SESSION['photo'] .= $_POST['picture'] . '<br>';
+                    echo ('<tr><td>' . $_SESSION['name'] . '</td><td>' . $_SESSION['pricee'] . '</td><td>' . $_SESSION['descriptions'] . '</td><td>' . $_SESSION['photo'] . '</td></tr>');
                 }
                 // session_unset();
-            ?>
+                ?>
             </tbody>
         </table>
     </div>
@@ -169,9 +175,9 @@ text-align:center;
                 <div class="col-md-4 mb-md-0 mb-3">
 
                     <!-- Twitter -->
-                    <a href="#" class="fa fa-facebook" ></a>
-                    <a href="#" class="fa fa-twitter" ></a>
-                    <a href="#" class="fa fa-instagram" ></a>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
                 </div>
                 <!-- Grid column -->
 
@@ -188,6 +194,12 @@ text-align:center;
                         <li>
                             <a href="#!" style="color: white;">Products</a>
                         </li>
+                        <li>
+                            <a href="#!" style="color: white;">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#!" style="color: white;">Contact</a>
+                        </li>
                     </ul>
 
                 </div>
@@ -201,7 +213,7 @@ text-align:center;
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3" style="background-color: rgba(193, 178, 137, 0.8); font-size: 20px;">© 2022 Copyright|
-          <a href="view-products-page.php"> R.M</a>. All rights reserved.
+            <a href="view-products-page.php"> R.M</a>. All rights reserved.
         </div>
         <!-- Copyright -->
 
@@ -235,7 +247,7 @@ text-align:center;
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
     </script>
-    
+
 </body>
 
 </html>
