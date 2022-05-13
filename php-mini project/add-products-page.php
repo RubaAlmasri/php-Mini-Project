@@ -57,10 +57,10 @@ session_start();
             color: white;
         }
 
-        /* .nav-link
-{
-text-align:center;
-} */
+        #pimage {
+            width: 50px;
+            height: 50px;
+        }
     </style>
 </head>
 
@@ -68,7 +68,7 @@ text-align:center;
 
     <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #d1c093; ">
 
-        <!-- Brand/logo -->
+        <!-- Brand/Ruba/logo -->
         <a class="navbar-brand" href="#">
             <img src="Images/logo.png" alt="logo" id="logo">
         </a>
@@ -98,7 +98,7 @@ text-align:center;
 
     <div class="container">
 
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="prod"><b>Product Name:</b> </label>
                 <input type="text" class="form-control" id="prod" name="pname" Required>
@@ -113,7 +113,7 @@ text-align:center;
             </div>
             <div class="form-group">
                 <label for="pic"><b> Product Picture: </b></label>
-                <input type="file" class="form-control-file" id="pic" name="picture" accept="image/*" required>
+                <input type="file" class="form-control-file" id="pic" name="file" accept="image/*" required>
                 <small>jpg,jpeg,png...</small>
             </div>
             <br>
@@ -137,14 +137,21 @@ text-align:center;
             </thead>
             <tbody id="info">
                 <?php
-
-
                 if (isset($_POST['add'])) {
+                    if (!(file_exists("images/" . $_FILES["file"]["name"]))) {
+                        move_uploaded_file($_FILES["file"]["tmp_name"], "images/" . $_FILES["file"]["name"]);
+                    }
                     $_SESSION['name'] .= $_POST['pname'] . '<br>';
                     $_SESSION['pricee'] .= $_POST['price'] . '<br>';
                     $_SESSION['descriptions'] .= $_POST['description'] . '<br>';
-                    $_SESSION['photo'] .= $_POST['picture'] . '<br>';
-                    echo ('<tr><td>' . $_SESSION['name'] . '</td><td>' . $_SESSION['pricee'] . '</td><td>' . $_SESSION['descriptions'] . '</td><td>' . $_SESSION['photo'] . '</td></tr>');
+                    $_SESSION['photo'] .= $_FILES["file"]["name"] . '<br>';
+                    $arr1 = explode("<br>", $_SESSION['name']);
+                    $arr2 = explode("<br>", $_SESSION['pricee']);
+                    $arr3 = explode("<br>", $_SESSION['descriptions']);
+                    $arr4 = explode("<br>", $_SESSION['photo']);
+                    for ($i = 0; $i < count($arr1) - 1; $i++) {
+                        echo ('<tr style="border:1px solid black;"><td>' . $arr1[$i] . '</td><td>' . $arr2[$i] . '</td><td>' . $arr3[$i] . '</td><td><img src="images/' . $arr4[$i] . '" alt="Image" id="pimage"></td></tr><br>');
+                    }
                 }
                 // session_unset();
                 ?>
@@ -211,36 +218,15 @@ text-align:center;
         </div>
         <!-- Footer Links -->
 
-        <!-- Copyright -->
+        <!-- Copyright Ruba-->
         <div class="footer-copyright text-center py-3" style="background-color: rgba(193, 178, 137, 0.8); font-size: 20px;">© 2022 Copyright|
             <a href="view-products-page.php"> R.M</a>. All rights reserved.
         </div>
-        <!-- Copyright -->
+        <!-- Copyright Ruba-->
 
     </footer>
     <!-- Footer -->
 
-    <!-- <script>
-        var b=[];
-        document.getElementById('btn').addEventListener('click', function () {
-
-            if (document.getElementById('prod').value == '' || document.getElementById('pri').value == '' || document.getElementById('desc').value == '') {
-                window.alert('Please Fill All The Fields!!!');
-            }
-            else {
-                var i = '';
-                var n = document.getElementById('prod').value;
-                var p = document.getElementById('pri').value;
-                var d = document.getElementById('desc').value;
-                var ph = 'RM-logos_transparent.png';
-                
-                b.push([n,p,d,ph]);
-                document.getElementById('info').innerHTML += '<tr><td>' + n + '</td><td>' + p + '</td><td>' + d + '</td><td>' + ph + '</td></tr>';
-                console.log(b);
-            }
-
-        })
-    </script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">

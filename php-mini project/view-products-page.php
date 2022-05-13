@@ -57,6 +57,10 @@ session_start();
             padding-top: 20%;
             padding-bottom: 20%;
         }
+        #pimage{
+            width: 500px;
+            height: 250px;
+        }
     </style>
 </head>
 
@@ -110,7 +114,7 @@ session_start();
                     echo ('<div class="col-md-4 mt-2">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-img-actions"> <img src="images/product.jpg" class="card-img img-fluid" width="100px" height="250px" alt="Image"> </div>
+                            <div class="card-img-actions"> <img src="images/'.$arr4[$i].'" class="card-img img-fluid" alt="Image" id="pimage"> </div>
                         </div>
                         <div class="card-body bg-light text-center">
                             <div class="mb-2">
