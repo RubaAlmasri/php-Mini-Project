@@ -125,9 +125,9 @@ session_start();
 
     </div>
 
-    <div class="table-responsive" id="table-div">
+    <div class="table-responsive-sm" id="table-div">
         <table class="table">
-            <thead>
+            <thead class="thead-light">
                 <tr>
                     <th scope="col">Product Name</th>
                     <th scope="col">Price</th>
@@ -150,7 +150,7 @@ session_start();
                     $arr3 = explode("<br>", $_SESSION['descriptions']);
                     $arr4 = explode("<br>", $_SESSION['photo']);
                     for ($i = 0; $i < count($arr1) - 1; $i++) {
-                        echo ('<tr style="border:1px solid black;"><td>' . $arr1[$i] . '</td><td>' . $arr2[$i] . '</td><td>' . $arr3[$i] . '</td><td><img src="images/' . $arr4[$i] . '" alt="Image" id="pimage"></td></tr><br>');
+                        echo ('<tr><td>' . $arr1[$i] . '</td><td>' . $arr2[$i] . '</td><td>' . $arr3[$i] . '</td><td><img src="images/' . $arr4[$i] . '" alt="Image" id="pimage"></td></tr><br>');
                     }
                 }
                 // session_unset();
